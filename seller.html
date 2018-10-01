@@ -70,31 +70,35 @@
                         <!--    <input type="text" name="quantity" id="quantity" style="margin-left: 60px" >   -->  
 
 
-                            <input type="date" name="quantity" id="quantity" style="margin-left: 60px;width:210px">
+                            <input type="date" name="mydate" id="mydate" style="margin-left: 60px;width:210px">
                          <!--   <input type="date" id="mydate" style="margin-left: 40px;padding-left: 40px">-->
                           <!-- <input type="text" id="datepicker" style="background-color: azure">-->
                             
                         </div>
                         
                         <div class="form-group">
-                             <label for="username">Quantity</label>
+                             <label for="quantity">Quantity</label>
                             <input type="text" name="quantity" id="quantity" style="margin-left: 60px" >     
                         </div>
                         <div class="form-group">
-                          <label for="email">Unit Price</label>
+                          <label for="goods">Goods</label>
+                         <input type="text" name="goods" id="goods" style="margin-left: 75px" >     
+                     </div>
+                        <div class="form-group">
+                          <label for="unitprice">Unit Price</label>
                           <input type="text" name="unitprice" id="unitprice" style="margin-left: 55px">
                         </div>
                         <div class="form-group">
-                          <label for="amount">Total Amount</label>
+                          <label for="totalamount">Total Amount</label>
                           <input type="text" name="totalamount" id="totalamount" style="margin-left: 30px">
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                           <label for="from">From</label>
                           <input type="text" name="from" id="from" style="margin-left: 80px">
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="to" >To</label>
-                            <input type="text" name="to" id="to" style="margin-left: 90px">
+                            <input type="text" name="to" id="to" style="margin-left: 100px">
                         </div>
                             
                         <div class="form-group" style="margin-bottom: -20px">
@@ -223,8 +227,6 @@
   <script src="js/scripts.min.js"></script>
   <script src="js/main.min.js"></script>
   <script src="js/custom.js"></script>
-
-
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -239,23 +241,32 @@
   $("#myid").html("<b>"+no+"</b>");
   
   $("#submitform").click(function(){
-    var date = document.getElementById("mydate").value ;
+  //  var date = document.getElementById("mydate").value ;
+  var date = $('#mydate').val();
     var mydate = new Date(date);
     
         var invoiceDate = mydate.getDate()+"/" + (mydate.getMonth()+1)+"/"+ mydate.getFullYear();
-        console.log("thos is date---",invoicedate)
-        
+        var duedate = mydate.getDate()+"/" + (mydate.getMonth()+1+3)+"/"+ mydate.getFullYear()
         var totalAmount = $('#totalamount').val();
-        console.log("thos is totalamount---",totalamount)
+        var quantity =$('#quantity').val();
+        var goods =$('#goods').val();
+        //var totalamount =$('#').val();
+        var from =$('#from').val();
+        var to =$('#to').val();
+        var unitprice =$('#unitprice').val();
         var dataString ={
-          "status":"invoiceRaised",
-          "":"",
+          "invoiceID":no.toString(),
+          "goods":goods,
+          "quantity":quantity,
+          "dueDate":duedate,
           "invoiceDate":invoiceDate,
-          "totalAmount":totalAmount,
-          
+          "to":"micro pvt ltd",
+          "unitPrice":unitprice,
+          "totalPrice":totalAmount
         }
+        console.log( JSON.stringify(dataString));
         $.ajax({
-                  url:'/readRequest',
+                  url:'http://172.16.12.50:3000/generateInvoice',
                   type: 'POST',
                   contentType: 'application/json', 
                   data: JSON.stringify(dataString),
@@ -263,8 +274,8 @@
                     //  'authorization':requestid
                       //},
                   success: function(response) {
-                      // var message = response.message;
                     console.log(JSON.stringify(response));
+                    //("message":"Successfully committed the change to the ledger by the peer")
                     } ,      
                   error: function(response) {
                       console.log('DEBUG: GET Enquiries Failed');

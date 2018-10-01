@@ -38,11 +38,11 @@
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
             <li><a href="index.html">Home</a></li>
-            <!--<li><a href="blog.html">Blog</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-            <li><a href="tour.html">Tour</a></li>-->
-            <li><a href="login.html">Log in</a></li>
-            <li class="probootstrap-cta"><a href="signup.html">Sign up</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Activity</a></li>
+            <!-- <li><a href="tour.html">Tour</a></li> -->
+            <!-- <li><a href="login.html">Log in</a></li> -->
+            <!-- <li class="probootstrap-cta"><a href="signup.html">Sign up</a></li> -->
           </ul>
           <div class="extra-text visible-xs">
             <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
@@ -61,42 +61,68 @@
  
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
-                      <form method="post" class="probootstrap-form probootstrap-form-box">
+                      <div  class="probootstrap-form probootstrap-form-box" style="width: 800px;margin-left: -100px">
                         
                         <h3 style="margin-top: -20px">Invoice Details</h3>
                         
-                        <div class="form-group">
-                             <label for="username">Quantity</label>
-                            <input type="username" name="username" id="username" style="margin-left: 60px" disabled>     
-                        </div>
-                        <div class="form-group">
-                          <label for="email">Unit Price</label>
-                          <input type="email" name="email" id="email" style="margin-left: 55px">
-                        </div>
-                        <div class="form-group">
-                          <label for="amount">Total Amount</label>
-                          <input type="text" name="amount" id="amount" style="margin-left: 30px">
-                        </div>
-                        <div class="form-group">
-                          <label for="from">From</label>
-                          <input type="text" name="from" id="from" style="margin-left: 80px">
-                        </div>
-                        <div class="form-group">
-                            <label for="to" >To</label>
-                            <input type="text" name="to" id="to" style="margin-left: 90px">
-                        </div>
-                        
-                        <div class="form-group">
-                          <div class="row"></div>
-                          <div class="col-md-6">
-                          <input type="submit" value="Approve" class="btn btn-primary" style="margin-right: 250px">
-                          </div>
-                          <div class="col-md-6">
-                          <input type="submit" value="Reject" class="btn btn-primary" style="margin-right: 450px">
-                          </div>
-                        </div>
-                        </div>
-                      </form>
+                        <table id="finance-table" style="font-family: arial, sans-serif; border-collapse: collapse;width: 100%;">
+                            <tr>
+                              <th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Sr No</th>
+                              <th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Invoice ID</th>
+                              <th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Status</th>
+                              <th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Details</th>
+                             
+                            </tr>
+                            <tr>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;">1</td>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;" id="invoiceid"> </td>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px" id="showstatus"></td>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;" id="details">
+                                  <div id="ps">
+                                      <p> Unit price :<span id="unitprice"> </span></p>
+                                     <p>Total price : <span id="totalprice"></span></p>
+                                     <p >Goods :  <span id="goods"></span> </p>
+                                     <p >Buyer Name : <span id="to"></span></p>
+                                     <p> Quantity :<span id="quantity"></span></p>
+                                     <p> Invoice Date :<span id="invoicedate"></span></p>
+                                     <p> Due Date :<span id="duedate"></span></p>
+                                     <span id="shwdiscount">
+                                     <p> Discount :<span id="discount"></span></p>
+                                     <p> Discount Price:<span id="discountprice"></span></p>
+                                    </span>
+                                   </div>
+
+                              </td> 
+                                                    
+                            </tr>
+                            <!-- <tr>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;">2</td>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;">2485  </td>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px">Invoice approved</td>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px"></td>                            
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;" id="select">
+                                  <div class="row">
+                                    <div class="col-sm-6">
+                                         <button id="approvebtn">Approve</button>
+                                      </div>   
+                                      <div class="col-sm-6">
+                                         <button id="rejectbtn">Reject</button>
+                                         </div>
+                                        </div>  
+                                 
+                                </td>      
+                            </tr> -->
+                            <!-- <tr>
+                               <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;">3</td>
+                                <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;">6405</td>
+                                <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;">Invoice approved</td>
+                                <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;"><a  href="financedetails.html" role="button" class="btn" style="color: darkgreen">See here...</a></td>                            
+                            </tr> -->
+                          </table>
+                      
+                      
+                        <!-- </div> -->
+                      </div>
                     </div>
                   </div>
              
@@ -133,7 +159,7 @@
                 <a href="#">
                   <figure><img src="img/img_2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
                   <div class="text">
-                    <h4>River named Duden flows</h4>
+                    <h4>Blog</h4>
                     <p>A small river named Duden flows by their place</p>
                   </div>
                 </a>
@@ -142,7 +168,7 @@
                 <a href="#">
                   <figure><img src="img/img_3.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
                   <div class="text">
-                    <h4>River named Duden flows</h4>
+                    <h4>Services</h4>
                     <p>A small river named Duden flows by their place</p>
                   </div>
                 </a>
@@ -151,7 +177,7 @@
                 <a href="#">
                   <figure><img src="img/img_2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
                   <div class="text">
-                    <h4>River named Duden flows</h4>
+                    <h4></h4>
                     <p>A small river named Duden flows by their place</p>
                   </div>
                 </a>
@@ -164,7 +190,7 @@
             <h3>Contact</h3>
             <ul class="probootstrap-contact-info">
               <li><i class="icon-location2"></i> <span>198 West 21th Street, Suite 721 New York NY 10016</span></li>
-              <li><i class="icon-mail"></i><span>info@domain.com</span></li>
+              <li><i class="icon-mail"></i><span>info@nelito.com</span></li>
               <li><i class="icon-phone2"></i><span>+123 456 7890</span></li>
             </ul>
             
@@ -179,7 +205,7 @@
             <li><a href=""><i class="icon-instagram2"></i></a></li>
           </ul>
           <p>
-            <small>&copy; 2017 <a href="https://uicookies.com/" target="_blank">uiCookies:Sublime</a>. All Rights Reserved. <br> Designed &amp; Developed by <a href="https://uicookies.com/" target="_blank">uicookies.com</a> Demo Images: Unsplash</small>
+            <small>&copy; 2018 <a href="https://uicookies.com/" target="_blank">#</a>. All Rights Reserved. <br> Designed &amp; Developed by <a href="#" target="_blank">#</a> Demo Images: Unsplash</small>
           </p>
           
         </div>
@@ -187,11 +213,60 @@
     </div>
   </footer>
   <!-- END: footer -->
-
-
-
   <script src="js/scripts.min.js"></script>
   <script src="js/main.min.js"></script>
   <script src="js/custom.js"></script>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#shwdiscount').hide();
+    var datastring={
+          "to":"micro pvt ltd"
+        }
+    $.ajax({
+                    url:'http://172.16.12.50:3000/getInvoiceDetails',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(datastring),
+                    success: function(response) {
+                        var obj = JSON.parse(response.message.message);
+                        console.log("message " +JSON.stringify(obj));
+                        var discount = obj.goods;
+                        //console.log(discount);
+                        var invoiceID =obj.invoiceID;
+                        $('#invoiceid').html('<b>'+invoiceID+'</b>')
+                        $('#unitprice').html('<b>'+obj.unitprice+'</b>')
+                        $('#totalprice').html('<b>'+obj.totalprice+'</b>');
+                        $('#goods').html('<b>'+obj.goods+'</b>');
+                        $('#to').html('<b>'+obj.to+'</b>');
+                        $('#invoicedate').html('<b>'+obj.invoicedate+'</b>');
+                        $('#duedate').html('<b>'+obj.duedate+'</b>');
+                        $('#quantity').html('<b>'+obj.quantity+'</b>');
+                        $('#showstatus').html('<b>'+obj.status+'</b>');
+                        if(obj.status == "financeReleased" || obj.status == "approved" || obj.status == "approvalPending"){
+                          console.log('in if');
+                          $('#shwdiscount').show();
+                          $('#discountprice').html('<b>'+obj.discountPrice+'</b>');
+                        $('#discount').html('<b>'+obj.discount+'% </b>');
+                        }
+                              
+                    },      
+                        error: function(response) {
+                       console.log('DEBUG: GET Enquiries Failed');
+                       console.log("Error Message: ", response.message);
+                         }
+                    
+            });
+
+  });
+
+  
+  
+</script>
+
   </body>
 </html>

@@ -77,7 +77,7 @@
               <input type="password" name="password" id="password" class="form-control">
             </div>
             <div class="form-group mb50">
-              <a href="sellarhome.html"class="btn btn-primary btn-block">login</a>
+              <a href="#"class="btn btn-primary btn-block" onclick="loginaction" id="login1">login</a>
             
             </div>
             <div class="form-group text-center">
@@ -170,7 +170,49 @@
   <script src="js/main.min.js"></script>
   <script src="js/custom.js"></script>
 <script>
-
+    $(document).ready(function(){
+   
+  $('#login1').click(function(){
+  // alert("hello")
+  var password =$('#password').val();
+  console.log(password)
+  var username =$('#username').val();
+  console.log(username)
+  var datastring ={
+    "password":password,
+    "username":username
+  }
+  // if(username= "bank"){
+  //   window.location="financehome.html";
+  // }else{
+  //   window.location="sellarhome.html";
+  // }
+  $.ajax({
+                    url:'http://172.16.12.50:3000/Login',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(datastring),
+                    success: function(response) {
+                        var userType = response.userType;
+                        if(userType == "seller"){
+                          window.location="sellarhome.html";
+                        }else if(userType == "buyer"){
+                          window.location="buyer.html";
+                        }else{
+                          window.location="financehome.html";
+                        }
+                        console.log("message" +JSON.stringify(response));
+                              
+                    },      
+                        error: function(response) {
+                       console.log('DEBUG: GET Enquiries Failed');
+                       console.log("Error Message: ", response.message);
+                       
+                }
+                    
+});
+  })
+ });
 
   
 </script>

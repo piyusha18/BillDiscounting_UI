@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>uiCookies:Sublime &mdash; Free Bootstrap Theme, Free Responsive Bootstrap Website Template</title>
+    <meta name="description" content="Free Bootstrap Theme by uicookies.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+   
+    <link rel="stylesheet" href="css/styles-merged.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet"> 
+
+    <!--[if lt IE 9]>
+      <script src="js/vendor/html5shiv.min.js"></script>
+      <script src="js/vendor/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .finance-table{
+	font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+    </style>
+  </head>
+  <body>
+    
+
+
+  <!-- START: header -->
+  <header role="banner" class="probootstrap-header">
+    <div class="container-fluid">
+      <!-- <div class="row"> -->
+        <a href="index.html" class="probootstrap-logo"><img src="img/nelito.jpeg" alt="Nelito"  height="30" width="70"><span></span></a>
+        
+        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
+
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+          <ul class="probootstrap-main-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+           <!-- <li><a href="pricing.html">Pricing</a></li>-->
+            <li><a href="tour.html">About us</a></li>
+           <!-- <li><a href="login.html">Log in</a></li>
+            <li class="probootstrap-cta"><a href="signup.html">Sign up</a></li>-->
+          </ul>
+          <div class="extra-text visible-xs">
+            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+            <h5>Social</h5>
+            <ul class="social-buttons">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook"></i></a></li>
+              <li><a href="#"><i class="icon-instagram2"></i></a></li>
+            </ul>
+            <p><small>&copy; Copyright 2017. All Rights Reserved.</small></p>
+          </div>
+        </nav>
+
+        <section class="probootstrap-intro">
+          <div class="container">
+ 
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                          
+                        <table id="finance-table" style="font-family: arial, sans-serif; border-collapse: collapse;width: 100%;">
+                            <tr>
+                              <th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Sr No</th>
+                              <th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Invoice ID</th>
+                              <th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Status</th>
+                              <th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Details</th>
+                              <th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black" id="shwcheks">CheckIn</th>
+                            </tr>
+                            <tr>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" >1</td>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="invoiceid">  
+                                  <!-- <div id="ps">
+                                      <p>Total amount : 1000</p>
+                                      <p>Goods : Frames</p>
+                                  </div> -->
+                                
+                              </td>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="showstatus"></td>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id=""><a  href="financedetails.html" role="button" class="btn" style="color: darkgreen">See here...</a></td>                            
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="showbtnfnce"><button id="finceRels" style="color: black">Finance Released</button></td> 
+                            </tr>
+                            <!-- <tr>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white">2</td>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white">2485 
+                                <div id="ps1">
+                                  <p>Total amount : 1000</p>
+                                  <p>Goods : Frames</p>
+                              </div>
+                              </td>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white">Invoice approved</td>
+                              <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white"><button id="showdetails">See here</button></td>                            
+                            
+                            </tr>
+                            <tr>
+                               <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white">3</td>
+                                <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white">6405</td>
+                                <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white">Invoice approved</td>
+                                <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white"><a  href="financedetails.html" role="button" class="btn" style="color: darkgreen">See here...</a></td>                            
+                            </tr> -->
+                          </table>
+                          
+                    </div>
+                  </div>
+             
+           
+          </div>
+
+
+
+ <!-- Modal -->
+ <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        
+      </div>
+      <div class="modal-body">
+        <p style="size: 18px"><b>Invoice details uploaded Sucessfully !!!</b></p>
+      </div>
+      <div class="modal-footer">
+        <a role="button" href="sellarhome.html" class="btn btn-primary"  id="okbutton">Ok</a>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+        </section>
+
+      <!-- </div> -->
+    </div>
+    
+    
+  </header>
+  
+  <!-- END: header -->
+  
+  <!-- START: footer -->
+  <footer role="contentinfo" class="probootstrap-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="probootstrap-footer-widget">
+            <h3>About</h3>
+            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+            <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="probootstrap-footer-widget">
+            <h3>Blog</h3>
+            <ul class="probootstrap-blog-list">
+              <li>
+                <a href="#">
+                  <figure><img src="img/img_2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
+                  <div class="text">
+                    <h4>what is invoice</h4>
+                    <p>A small river named Duden flows by their place</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <figure><img src="img/img_3.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
+                  <div class="text">
+                    <h4>Services</h4>
+                    <p>A small river named Duden flows by their place</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <figure><img src="img/img_2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
+                  <div class="text">
+                    <h4>how to do transaction ?</h4>
+                    <p>A small river named Duden flows by their place</p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="probootstrap-footer-widget">
+            <h3>Contact</h3>
+            <ul class="probootstrap-contact-info">
+              <li><i class="icon-location2"></i> <span>MBP, Mahape,navi mumbai, maharashtra</span></li>
+              <li><i class="icon-mail"></i><span>info@nelito.com</span></li>
+              <li><i class="icon-phone2"></i><span>+123 456 7890</span></li>
+            </ul>
+            
+          </div>
+        </div>
+      </div>
+      <!--<div class=amount"row mt40">
+        <div class="camountol-md-12 text-center">
+          <ul class="amountprobootstrap-footer-social">
+            <li><a hramountef=""><i class="icon-twitter"></i></a></li>
+            <li><a hramountef=""><i class="icon-facebook"></i></a></li>
+            <li><a hramountef=""><i class="icon-instagram2"></i></a></li>
+          </ul>amount
+          <p>amount
+            <small>&camountopy; 2017 <a href="https://uicookies.com/" target="_blank">uiCookies:Sublime</a>. All Rights Reserved. <br> Designed &amp; Developed by <a href="https://uicookies.com/" target="_blank">uicookies.com</a> Demo Images: Unsplash</small>
+          </p>
+          
+        </div>
+      </div>-->
+    </div>
+  </footer>
+  <!-- END: footer -->
+<input type="hidden" id="goods" value="">
+<input type="hidden" id="discount" value="">
+<input type="hidden" id="quantity" value="">
+<input type="hidden" id="discountPrice" value="">
+<input type="hidden" id="totalprice" value="">
+<input type="hidden" id="invoicedate" value="">
+<input type="hidden" id="duedate" value="">
+<input type="hidden" id="to" value="">
+<input type="hidden" id="duedate" value="">
+<input type="hidden" id="unitprice" value="">
+
+  <script src="js/scripts.min.js"></script>
+  <script src="js/main.min.js"></script>
+  <script src="js/custom.js"></script>
+
+
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script type="text/javascript">
+  
+  $(document).ready(function(){
+        $("#ps").hide();
+        $("#ps1").hide();
+        $("#ps2").hide();
+        $('#showbtnfnce').hide();
+    $('#shwcheks').hide();
+  $('#invoiceid').click(function(){
+   // $("#ps").hide();
+      $("#ps").toggle();
+      $("#ps1").toggle();
+      $("#ps2").toggle();
+  })
+
+ var datastring={
+          "to":"micro pvt ltd"
+        }
+    $.ajax({
+                    url:'http://172.16.12.50:3000/getInvoiceDetails',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(datastring),
+                    success: function(response) {
+                        var obj = JSON.parse(response.message.message);
+                              console.log("message ---" +JSON.stringify(obj));
+                              $('#invoiceid').html('<b>'+obj.invoiceID+'</b>');
+                              $('#showstatus').html('<b>'+obj.status+'</b>');
+                              $('#discountPrice').val(obj.discountPrice);
+                              $('#discount').val(obj.discount);
+                              $('#goods').val(obj.goods);
+                              $('#totalprice').val(obj.totalprice);
+                              $('#invoicedate').val(obj.invoicedate);
+                              $('#to').val(obj.to);
+                              $('#duedate').val(obj.duedate);
+                              $('#quantity').val(obj.quantity);
+                              $('#unitprice').val(obj.unitprice);
+                              if(obj.status == "approved" ){
+                                console.log("in if ")
+                                $('#showbtnfnce').show();
+                                $('#shwcheks').show();
+                              }
+                              
+                    },      
+                        error: function(response) {
+                       console.log('DEBUG: GET Enquiries Failed');
+                       console.log("Error Message: ", response.message);
+                         }
+                    
+            });
+
+      $('#finceRels').click(function(){
+
+         var datastr= {
+  "invoiceID":  $('#invoiceid').text(),
+  "goods":$('#goods').val(),
+  "quantity":  $('#quantity').val(),           
+  "discount":$('#discount').val(),
+  "discountPrice": $('#discountPrice').val(),
+  "totalPrice":  $('#totalprice').val(),
+  "dueDate":  $('#duedate').val(),
+  "invoiceDate":$('#invoicedate').val(),
+  "to": $('#to').val(),
+  "unitPrice": $('#unitprice').val(),
+  "status": "approved"
+}
+console.log(JSON.stringify(datastr))
+
+          $.ajax({
+                    url:'http://172.16.12.50:3000/financeInvoice',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(datastr),
+                    success: function(response) {
+                        //var obj = JSON.parse(response.message.message);
+                        console.log("message--++ " +JSON.stringify(response.message));
+                        if(response.message == "Successfully committed the change to the ledger by the peer"){}
+                        {
+                          window.location.reload(true);
+                        }
+                    }, 
+                   error: function(response) {
+                       console.log('DEBUG: GET Enquiries Failed');
+                       console.log("Error Message: ", response.message);
+                   }
+                    
+            });
+
+
+      });
+
+   
+});
+
+  </script>
+  
+  </body>
+</html>
