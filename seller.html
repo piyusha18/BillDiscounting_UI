@@ -6,6 +6,7 @@
     <title>uiCookies:Sublime &mdash; Free Bootstrap Theme, Free Responsive Bootstrap Website Template</title>
     <meta name="description" content="Free Bootstrap Theme by uicookies.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    
     <link rel="stylesheet" href="css/styles-merged.css">
     <link rel="stylesheet" href="css/style.min.css">
@@ -38,7 +39,7 @@
             <li><a href="pricing.html">Pricing</a></li>
             <li><a href="tour.html">Tour</a></li>-->
             <li><a href="login.html">Log in</a></li>
-            <li class="probootstrap-cta"><a href="signup.html">Sign up</a></li>
+            <li class="probootstrap-cta"><a href="#">Hello ,Seller</a></li>
           </ul>
           <div class="extra-text visible-xs">
             <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
@@ -246,11 +247,12 @@
     var mydate = new Date(date);
     
         var invoiceDate = mydate.getDate()+"/" + (mydate.getMonth()+1)+"/"+ mydate.getFullYear();
-        var duedate = mydate.getDate()+"/" + (mydate.getMonth()+1+3)+"/"+ mydate.getFullYear()
+        mydate.setMonth(mydate.getMonth()+2);
+        var duedate = (mydate.getDate() + "/" + (mydate.getMonth() + 1) + "/" + mydate.getFullYear());
+        console.log('duedate--->>',duedate)
         var totalAmount = $('#totalamount').val();
         var quantity =$('#quantity').val();
         var goods =$('#goods').val();
-        //var totalamount =$('#').val();
         var from =$('#from').val();
         var to =$('#to').val();
         var unitprice =$('#unitprice').val();
@@ -266,7 +268,7 @@
         }
         console.log( JSON.stringify(dataString));
         $.ajax({
-                  url:'http://172.16.12.50:3000/generateInvoice',
+                  url:'http://172.16.12.46:3000/generateInvoice',
                   type: 'POST',
                   contentType: 'application/json', 
                   data: JSON.stringify(dataString),
@@ -283,14 +285,14 @@
             
                              }
                 });
-  });
+   });
 
   $('#okbutton').click(function(){
     
   })
   
    
-});
+})
 
   </script>
   

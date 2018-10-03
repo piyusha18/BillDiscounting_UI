@@ -6,6 +6,7 @@
     <title>uiCookies:Sublime &mdash; Free Bootstrap Theme, Free Responsive Bootstrap Website Template</title>
     <meta name="description" content="Free Bootstrap Theme by uicookies.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    
     <link rel="stylesheet" href="css/styles-merged.css">
     <link rel="stylesheet" href="css/style.min.css">
@@ -38,8 +39,8 @@
             <li><a href="blog.html">Blog</a></li>
            <!-- <li><a href="pricing.html">Pricing</a></li>-->
             <li><a href="tour.html">About us</a></li>
-           <!-- <li><a href="login.html">Log in</a></li>
-            <li class="probootstrap-cta"><a href="signup.html">Sign up</a></li>-->
+           <!-- <li><a href="login.html">Log in</a></li>-->
+             <li class="probootstrap-cta"><a href="#">Hello ,Investor</a></li>
           </ul>
           <div class="extra-text visible-xs">
             <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
@@ -170,7 +171,8 @@
         <div class="col-md-4">
           <div class="probootstrap-footer-widget">
             <h3>About</h3>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+            <p>Bill discounting is an arrangement whereby the seller recovers an amount of sales bill from the financial intermediaries before it is due. Such intermediaries charge a fee for the service. 
+                From the other side, it is a business vertical for all types of financial intermediaries .</p>
             <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
           </div>
         </div>
@@ -180,7 +182,7 @@
             <ul class="probootstrap-blog-list">
               <li>
                 <a href="#">
-                  <figure><img src="img/img_2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
+                  <figure><img src="img/fn.png" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
                   <div class="text">
                     <h4>what is invoice</h4>
                     <p>A small river named Duden flows by their place</p>
@@ -189,7 +191,7 @@
               </li>
               <li>
                 <a href="#">
-                  <figure><img src="img/img_3.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
+                  <figure><img src="img/br.png" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
                   <div class="text">
                     <h4>Services</h4>
                     <p>A small river named Duden flows by their place</p>
@@ -198,7 +200,7 @@
               </li>
               <li>
                 <a href="#">
-                  <figure><img src="img/img_2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
+                  <figure><img src="img/seller.png" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
                   <div class="text">
                     <h4>how to do transaction ?</h4>
                     <p>A small river named Duden flows by their place</p>
@@ -265,33 +267,44 @@
         }
         var totalprice = 0;
     $.ajax({
-                    url:'http://172.16.12.50:3000/getInvoiceDetails',
+                    url:'http://172.16.12.46:3000/getInvoiceDetails',
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify(datastring),
                     success: function(response) {
-                        var obj = JSON.parse(response.message.message);
+                      
+                      console.log("invoiceid----->>"+localStorage.getItem('invoiceid'));
+                        var obj = response.message;
                        
                         console.log("message " +obj);
                         console.log("message " +JSON.stringify(obj));
                         var discount = obj.goods;
                         console.log(discount);
-                        var invoiceID =obj.invoiceID;
+                        var invoiceID =localStorage.getItem('invoiceid');
+                        for(var i=0 ;i<obj.length;i++){
+                          if(obj[i].invoiceID == invoiceID){
+                               // if(obj[i].status =="approved"){
+                                    $('#shwbtn').show();
+                                $('#shwcheck').show();
+                                  $('#myid').val(invoiceID)
+                                  $('#unitprice').val(obj[i].unitprice)
+                                  $('#totalamount').val(obj[i].totalprice);
+                                  $('#goods').val(obj[i].goods);
+                                  $('#to').val(obj[i].to);
+                                  $('#mydate').val(obj[i].invoicedate)
+                                  $('#duedate').val(obj[i].duedate);
+                                  $('#quantity').val(obj[i].quantity);
+                           // }
+                          }
+                        }
                         var totalprice =obj.totalprice;
-                        $('#myid').val(invoiceID)
-                        $('#unitprice').val(obj.unitprice)
-                        $('#totalamount').val(obj.totalprice);
-                        $('#goods').val(obj.goods);
-                        $('#to').val(obj.to);
-                        $('#mydate').val(obj.invoicedate)
-                        $('#duedate').val(obj.duedate);
-                        $('#quantity').val(obj.quantity);
+                        
 
                          var discount= $('#discount').val();
-                      console.log( $('#discount').val());
+                     // console.log( $('#discount').val());
 
                        totalprice = $('#totalamount').val();
-                       console.log("totalprice " +totalprice);
+                     //  console.log("totalprice " +totalprice);
                     }, 
                     async:false,     
                    error: function(response) {
@@ -305,7 +318,7 @@
             $('#discount').change(function() {
               var discount= $('#discount').val();
              console.log(discount);
-             var paid =totalprice *(discount /100);
+             var paid = Math.floor(totalprice *(discount /100));
              var totalpaid =totalprice - paid ;
              console.log("totalpaid " +totalpaid);
          $('#amountpaid').val(totalpaid);
@@ -330,17 +343,17 @@
   "unitPrice": $('#unitprice').val(),
   "status": "invoiceRaised"
 }
-console.log(JSON.stringify(datastr))
+console.log("strr---->",JSON.stringify(datastr))
 
           $.ajax({
-                    url:'http://172.16.12.50:3000/financeInvoice',
+                    url:'http://172.16.12.46:3000/financeInvoice',
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify(datastr),
                     success: function(response) {
                         //var obj = JSON.parse(response.message.message);
                         console.log("message--++ " +JSON.stringify(response.message));
-                        if(JSON.parse(response.message) == "Successfully committed the change to the ledger by the peer"){}
+                        if(response.message == "Successfully committed the change to the ledger by the peer")
                         {
                           
                         }

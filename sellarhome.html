@@ -6,6 +6,7 @@
     <title>uiCookies:Sublime &mdash; Free Bootstrap Theme, Free Responsive Bootstrap Website Template</title>
     <meta name="description" content="Free Bootstrap Theme by uicookies.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet"> 
     <link rel="stylesheet" href="css/styles-merged.css">
@@ -41,7 +42,7 @@
           <!--  <li><a href="pricing.html">Pricing</a></li>-->
             <!--<li><a href="tour.html">Tour</a></li>-->
             <li><a href="login.html">Log in</a></li>
-          <!--  <li class="probootstrap-cta"><a href="signup.html">Sign up</a></li>-->
+            <li class="probootstrap-cta"><a href="#">Hello ,Seller</a></li>
           </ul>
           <div class="extra-text visible-xs">
             <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
@@ -76,7 +77,7 @@
                              </div>
                     </div>   
                     <div class="row" id="showtable" style="width: 100%">
-                       <table id="finance-table" style="font-family: arial, sans-serif; border-collapse: collapse;margin-left: -100px" width="800">
+                       <!-- <table id="finance-table" style="font-family: arial, sans-serif; border-collapse: collapse;margin-left: -100px" width="800">
                         <tr>
                           <th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Sr No</th>
                           <th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Invoice ID</th>
@@ -86,7 +87,7 @@
                         </tr>
                         <tr>
                           <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white">1</td>
-                          <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="invoiceid" ></td>
+                           <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="invoiceid" ></td> 
                           <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="showstatus"> </td>
                           
                           <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="details">
@@ -111,7 +112,7 @@
                             </td>                           
                         </tr>
                         
-                      </table> 
+                      </table>  -->
                    
                     </div>  
                   </div>
@@ -355,6 +356,19 @@
     </div>
   </footer>-->
   <!-- END: footer -->
+
+  <input type="hidden" id="result" value="">
+  <input type="hidden" id="invoiceid1" value="">
+  <input type="hidden" id="goods1" value="">
+  <input type="hidden" id="to1" value="">
+  <input type="hidden" id="unitprice1" value="">
+  <input type="hidden" id="totalprice1" value="">
+  <input type="hidden" id="quantity1" value="">
+  <input type="hidden" id="invoicedate1" value="">
+  <input type="hidden" id="duedate1" value="">
+  <input type="hidden" id="discount1" value="">
+  <input type="hidden" id="discountprice1" value="">
+<!-- <span id="result"></span> -->
   <script src="js/scripts.min.js"></script>
   <script src="js/main.min.js"></script>
   <script src="js/custom.js"></script>
@@ -376,86 +390,292 @@
           "to":"micro pvt ltd"
         }
     $.ajax({
-                    url:'http://172.16.12.50:3000/getInvoiceDetails',
+                    url:'http://172.16.12.46:3000/getInvoiceDetails',
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify(datastring),
                     success: function(response) {
-                        var obj = JSON.parse(response.message.message);
-                       
-                        console.log("message " +obj);
-                        console.log("message " +JSON.stringify(obj));
-                        var discount = obj.goods;
-                        console.log(discount);
-                        var invoiceID =obj.invoiceID;
-                        $('#invoiceid').html('<b>'+invoiceID+'</b>')
-                        $('#unitprice').html('<b>'+obj.unitprice+'</b>')
-                        $('#totalprice').html('<b>'+obj.totalprice+'</b>');
-                        $('#goods').html('<b>'+obj.goods+'</b>');
-                        $('#to').html('<b>'+obj.to+'</b>');
-                        $('#invoicedate').html('<b>'+obj.invoicedate+'</b>');
-                        $('#duedate').html('<b>'+obj.duedate+'</b>');
-                        $('#quantity').html('<b>'+obj.quantity+'</b>');
-                        $('#showstatus').html('<b>'+obj.status+'</b>');
-                        if(obj.status == "approvalPending" ){
-                          $('#shwbtn').show();
-                          $('#shwcheck').show();
-                           $('#shwdis').show();
-                           $('#shwdis1').show();
-                        }
-                        if(obj.status == "approvalPending" || obj.status =="approved"){
+                      var msg = [];
+                        
+                       msg = response.message
+                        console.log("message " + JSON.stringify(msg));
+                      var no = 0;
+                        var table = '<table id="finance-table" style="font-family: arial, sans-serif; border-collapse: collapse;margin-left: -100px" width="800">'
+                        +'<tr>'+
+                          '<th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">'+'Sr No'+'</th>'
+                          +'<th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Invoice ID</th>'
+                          +'<th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Status</th>'
+                         +' <th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Details</th>'
+                          +'<th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black" id="shwcheck">ckeckIn</th>'
+                       + '</tr>';
+                          table +="<tr>";
+                        for(var i=0 ;i< msg.length ;i++){
+                          no =no +1 ;
                           
-                          $('#discount').html('<b>'+obj.discount+'</b>');
-                        $('#discountprice').html('<b>'+obj.discountPrice+'</b>');
+                          table +=  ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="srno" >')+no+('</td>');
+                            table +=  ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="invoiceid" >')+msg[i].invoiceID+('</td>')
+                            table +=  ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="invoiceid" >')+msg[i].status+('</td>')
+                        
+                            if(msg[i].status == "approvalPending" ){
+                              $('#shwbtn').show();
+                          $('#shwcheck').show();
+                          $('#invoiceid1').val(msg[i].invoiceID);
+                          $('#goods1').val(msg[i].goods);
+                          $('#unitprice1').val(msg[i].unitprice);
+                          $('#totalprice1').val(msg[i].totalprice);
+                          $('#to1').val(msg[i].to);
+                          $('#quantity1').val(msg[i].quantity);
+                          $('#invoicedate1').val(msg[i].invoicedate);
+                          $('#duedate1').val(msg[i].duedate);
+                          $('#discount1').val(msg[i].discount);
+                          $('#discountprice1').val(msg[i].discountPrice);
+
+                            table += ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="details">'+
+                            '<div id="ps">'+
+                               '<p style="margin-bottom: 0em; " id="unit">Unit price :<span id="unitprice">'+ msg[i].unitprice +'</span></p>'+
+                              '<p style="margin-bottom: 0em; "> Total price  :<span id="totalprice">'+msg[i].totalprice+'</span></p>'+
+                              '<p style="margin-bottom: 0em; "> Goods :<span id="goods">'+msg[i].goods+'</span> </p>'+
+                              '<p style="margin-bottom: 0em;"> Buyer Name :<span id="to">'+msg[i].to+'</span></p>'+
+                              '<p style="margin-bottom: 0em;"> Quantity :<span id="quantity">'+msg[i].quantity+'</span></p>'+
+                              '<p style="margin-bottom: 0em; "> Invoice Date :<span id="invoicedate">'+ msg[i].invoicedate+'</span></p>'+
+                              '<p style="margin-bottom: 0em; "> Due Date :<span id="duedate">'+msg[i].duedate+'</span></p>'+
+                              '<p style="color: crimson ;margin-bottom: 0em;" id="shwdis"> Discount :<span id="discount" style="color:white" >'+msg[i].discount+'% </span></p>'+
+                              '<p style="color: crimson;margin-bottom: 0em;" id="shwdis1">Discount Price :<span id="discountprice"  style="color:white">'+ msg[i].discountPrice+'</span></p>'+
+                            '</div>'+
+                          '</td> ') 
+                          table +=(' <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="shwbtn"><div id="shwbtn">'
+                                      +'<p><button id="aprvbtn" style="color: black">Approve</button></p>'+
+                                      '<p><button id="rejctbtn" style="color: black">Reject</button></p>'+
+                                    '</div>'+
+                                    '</td>'  )       
+
+                                    
+                           }
+                           else if(msg[i].status =="approved" || msg[i].status =='financeReleased'){
+                            $('#shwbtn').show();
+                          $('#shwcheck').show();
+                          table += ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="details">'+
+                            '<div id="ps">'+
+                               '<p style="margin-bottom: 0em; "> Unit price :<span id="unitprice">'+ msg[i].unitprice +'</span></p>'+
+                              '<p style="margin-bottom: 0em; "> Total price : <span id="totalprice">'+msg[i].totalprice+'</span></p>'+
+                              '<p style="margin-bottom: 0em; ">Goods : <span id="goods">'+msg[i].goods+'</span> </p>'+
+                              '<p style="margin-bottom: 0em;">Buyer Name :<span id="to">'+msg[i].to+'</span></p>'+
+                              '<p style="margin-bottom: 0em;"> Quantity :<span id="quantity">'+msg[i].quantity+'</span></p>'+
+                              '<p style="margin-bottom: 0em; "> Invoice Date :<span id="invoicedate">'+ msg[i].invoicedate+'</span></p>'+
+                              '<p style="margin-bottom: 0em; "> Due Date :<span id="duedate">'+msg[i].duedate+'</span></p>'+
+                              '<p style="color: crimson ;margin-bottom: 0em;" id="shwdis"> &nbsp;Discount :<span id="discount" style="color:white" >'+msg[i].discount+' %</span></p>'+
+                              '<p style="color: crimson;margin-bottom: 0em;" id="shwdis1">&nbsp; Discount Price :<span id="discountprice"  style="color:white">'+ msg[i].discountPrice+'</span></p>'+
+                            '</div>'+
+                          '</td> ') 
+                          table +=(' <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="shwbtn">'+'Not applicable'+'</td>'  )  
+                          
+                           }
+                           else if(msg[i].status == "invoiceRaised" ){
+                            table += ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="details">'+
+                            '<div id="ps">'+
+                               '<p style="margin-bottom: 0em; " >Unit price :<span id="unitprice">'+ msg[i].unitprice +'</span></p>'+
+                              '<p style="margin-bottom: 0em; "> Total price : <span id="totalprice">'+msg[i].totalprice+'</span></p>'+
+                              '<p style="margin-bottom: 0em; ">Goods :<span id="goods">'+msg[i].goods+'</span> </p>'+
+                              '<p style="margin-bottom: 0em;">Buyer Name : <span id="to">'+msg[i].to+'</span></p>'+
+                              '<p style="margin-bottom: 0em;"> Quantity :<span id="quantity">'+msg[i].quantity+'</span></p>'+
+                              '<p style="margin-bottom: 0em; "> Invoice Date :<span id="invoicedate">'+ msg[i].invoicedate+'</span></p>'+
+                              '<p style="margin-bottom: 0em; "> Due Date :<span id="duedate">'+msg[i].duedate+'</span></p>'+
+                                                          '</div>'+
+                          '</td> ') 
+
+                          table +=(' <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="shwbtn">'+'Not applicable'+'</td>'  )  
+                           }
+                          
+                            table +="</tr>"
                         }
-                              
-                    },      
+                        table += '</table>';
+                        $(table).appendTo('#showtable');
+
+        
+
+
+             $('#aprvbtn').click(function(){
+                  $("#result").val($(this).closest('tr').find('td').eq(3).text());
+                  
+                    var datastr= {
+                "invoiceID":  $('#invoiceid1').val(),
+                "goods":$('#goods1').val(),
+                "quantity":  $('#quantity1').val(),           
+                "discount": $('#discount1').val(),
+                "discountPrice": $('#discountprice1').val(),
+                "totalPrice":  $('#totalprice1').val(),
+                "dueDate":  $('#duedate1').val(),
+                "invoiceDate":$('#invoicedate1').val(),
+                "to": $('#to1').val(),
+                "unitPrice": $('#unitprice1').val(),
+                "status": "approvalPending"
+              }
+                  console.log(JSON.stringify(datastr))
+
+                      $.ajax({
+                                url:'http://172.16.12.46:3000/financeInvoice',
+                                type: 'POST',
+                                contentType: 'application/json',
+                                data: JSON.stringify(datastr),
+                                success: function(response) {
+                                    //var obj = JSON.parse(response.message.message);
+                                    console.log("message--++ " +JSON.stringify(response.message));
+                                    if(response.message == "Successfully committed the change to the ledger by the peer")
+                                    {
+                                      window.location.reload(true);
+                                      location.reload();
+                          
+                                    }
+                                }, 
+                                async:true,
+                              error: function(response) {
+                                  console.log('DEBUG: GET Enquiries Failed');
+                                  console.log("Error Message: ", response.message);
+                              }
+                                
+                        }); 
+
+
+                      });
+
+
+
+       
+                    },  
+                    async:true,    
                         error: function(response) {
                        console.log('DEBUG: GET Enquiries Failed');
                        console.log("Error Message: ", response.message);
                          }
                     
+          
+          
+          
             });
   })
 
-  $('#aprvbtn').click(function(){
-            var datastr= {
-          "invoiceID":  $('#invoiceid').text(),
-          "goods":$('#goods').text(),
-          "quantity":  $('#quantity').text(),           
-          "discount": $('#discount').text(),
-          "discountPrice": $('#discountprice').text(),
-          "totalPrice":  $('#totalprice').text(),
-          "dueDate":  $('#duedate').text(),
-          "invoiceDate":$('#invoicedate').text(),
-          "to": $('#to').text(),
-          "unitPrice": $('#unitprice').text(),
-          "status": "approvalPending"
-        }
-          console.log(JSON.stringify(datastr))
+  // $('#aprvbtn').click(function(){
+  //   console.log("in button")
+  //           var datastr= {
+  //         "invoiceID":  $('#invoiceid').text(),
+  //         "goods":$('#goods').text(),
+  //         "quantity":  $('#quantity').text(),           
+  //         "discount": $('#discount').text(),
+  //         "discountPrice": $('#discountprice').text(),
+  //         "totalPrice":  $('#totalprice').text(),
+  //         "dueDate":  $('#duedate').text(),
+  //         "invoiceDate":$('#invoicedate').text(),
+  //         "to": $('#to').text(),
+  //         "unitPrice": $('#unitprice').text(),
+  //         "status": "approvalPending"
+  //       }
+  //         console.log(JSON.stringify(datastr))
 
-          $.ajax({
-                    url:'http://172.16.12.50:3000/financeInvoice',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(datastr),
-                    success: function(response) {
-                        //var obj = JSON.parse(response.message.message);
-                        console.log("message--++ " +JSON.stringify(response.message));
-                        if(response.message == "Successfully committed the change to the ledger by the peer")
-                        {
-                          window.location.reload(true);
-                        }
-                    }, 
-                   error: function(response) {
-                       console.log('DEBUG: GET Enquiries Failed');
-                       console.log("Error Message: ", response.message);
-                   }
+  //         $.ajax({
+  //                   url:'http://172.16.12.46:3000/financeInvoice',
+  //                   type: 'POST',
+  //                   contentType: 'application/json',
+  //                   data: JSON.stringify(datastr),
+  //                   success: function(response) {
+  //                       //var obj = JSON.parse(response.message.message);
+  //                       console.log("message--++ " +JSON.stringify(response.message));
+  //                       if(response.message == "Successfully committed the change to the ledger by the peer")
+  //                       {
+  //                         //window.location.reload(true);
+
+  //                         var datastring={
+  //         "to":"micro pvt ltd"
+  //       }
+  //            $.ajax({
+  //                   url:'http://172.16.12.46:3000/getInvoiceDetails',
+  //                   type: 'POST',
+  //                   contentType: 'application/json',
+  //                   data: JSON.stringify(datastring),
+  //                   success: function(response) {
+  //                     var msg = [];
+                        
+  //                      msg = response.message
+  //                       console.log("message " + JSON.stringify(msg));
+  //                     var no = 0;
+  //                       var table = '<table id="finance-table" style="font-family: arial, sans-serif; border-collapse: collapse;margin-left: -100px" width="800">'
+  //                       +'<tr>'+
+  //                         '<th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">'+'Sr No'+'</th>'
+  //                         +'<th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Invoice ID</th>'
+  //                         +'<th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Status</th>'
+  //                        +' <th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Details</th>'
+  //                         +'<th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black" id="shwcheck">ckeckIn</th>'
+  //                      + '</tr>';
+  //                         table +="<tr>";
+  //                       for(var i=0 ;i< msg.length ;i++){
+  //                         no =no +1 ;
+                          
+  //                         table +=  ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="srno" >')+no+('</td>');
+  //                           table +=  ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="invoiceid" >')+msg[i].invoiceID+('</td>')
+  //                           table +=  ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="invoiceid" >')+msg[i].status+('</td>')
+  //                         //   msg[i].status == "approvalPending";
+  //                           if(msg[i].status == "approvalPending" || msg[i].status =="approved"){
+  //                             $('#shwbtn').show();
+  //                         $('#shwcheck').show();
+  //                           table += ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="details">'+
+  //                           '<div id="ps">'+
+  //                              '<p style="margin-bottom: 0em; ">Unit price :<span id="unitprice">'+ msg[i].unitprice +'</span></p>'+
+  //                             '<p style="margin-bottom: 0em; ">Total price : <span id="totalprice">'+msg[i].totalprice+'</span></p>'+
+  //                             '<p style="margin-bottom: 0em; ">Goods :  <span id="goods">'+msg[i].goods+'</span> </p>'+
+  //                             '<p style="margin-bottom: 0em;">Buyer Name : <span id="to">'+msg[i].to+'</span></p>'+
+  //                             '<p style="margin-bottom: 0em;"> Quantity :<span id="quantity">'+msg[i].quantity+'</span></p>'+
+  //                             '<p style="margin-bottom: 0em; "> Invoice Date :<span id="invoicedate">'+ msg[i].invoicedate+'</span></p>'+
+  //                             '<p style="margin-bottom: 0em; "> Due Date :<span id="duedate">'+msg[i].duedate+'</span></p>'+
+  //                             '<p style="color: crimson ;margin-bottom: 0em;" id="shwdis"> Discount :<span id="discount" style="color:white" >'+msg[i].discount+'</span></p>'+
+  //                             '<p style="color: crimson;margin-bottom: 0em;" id="shwdis1"> Discount Price :<span id="discountprice"  style="color:white">'+ msg[i].discountPrice+'</span></p>'+
+  //                           '</div>'+
+  //                         '</td> ') 
+  //                         // table +=(' <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="shwbtn"><div id="shwbtn">'
+  //                         //             +'<p><button id="aprvbtn" style="color: black">Approve</button></p>'+
+  //                         //             '<p><button id="rejctbtn" style="color: black">Reject</button></p>'+
+  //                         //           '</div>'+
+  //                         //           '</td>'  )                      
+                                             
+  //                          }
+  //                          else if(msg[i].status == "invoiceRaised" ){
+  //                           table += ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="details">'+
+  //                           '<div id="ps">'+
+  //                              '<p style="margin-bottom: 0em; ">Unit price :<span id="unitprice">'+ msg[i].unitprice +'</span></p>'+
+  //                             '<p style="margin-bottom: 0em; ">Total price : <span id="totalprice">'+msg[i].totalprice+'</span></p>'+
+  //                             '<p style="margin-bottom: 0em; ">Goods :  <span id="goods">'+msg[i].goods+'</span> </p>'+
+  //                             '<p style="margin-bottom: 0em;">Buyer Name : <span id="to">'+msg[i].to+'</span></p>'+
+  //                             '<p style="margin-bottom: 0em;"> Quantity :<span id="quantity">'+msg[i].quantity+'</span></p>'+
+  //                             '<p style="margin-bottom: 0em; "> Invoice Date :<span id="invoicedate">'+ msg[i].invoicedate+'</span></p>'+
+  //                             '<p style="margin-bottom: 0em; "> Due Date :<span id="duedate">'+msg[i].duedate+'</span></p>'+
+  //                                                         '</div>'+
+  //                         '</td> ') 
+
+  //                         table +=(' <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="shwbtn">'+'</td>'  )  
+  //                          }
+                          
+  //                           table +="</tr>"
+  //                       }
+  //                       table += '</table>';
+  //                       $(table).appendTo('#showtable');
+                        
+                              
+  //                   },      
+  //                       error: function(response) {
+  //                      console.log('DEBUG: GET Enquiries Failed');
+  //                      console.log("Error Message: ", response.message);
+  //                        }
                     
-            });
+  //           });
+  //                       }
+  //                   }, 
+  //                  error: function(response) {
+  //                      console.log('DEBUG: GET Enquiries Failed');
+  //                      console.log("Error Message: ", response.message);
+  //                  }
+                    
+  //           });
 
 
-  });
+  // });
  });
 </script>
 
