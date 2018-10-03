@@ -1,4 +1,4 @@
-THEME: Sublime - Free Bootstrap Theme
+THEME: Sublime - Billdiscounting ui
 AUTHOR: uiCookies.com
 AUTHOR URI: https://uiCookies.com/
 

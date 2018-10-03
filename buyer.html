@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>uiCookies:Sublime &mdash; Free Bootstrap Theme, Free Responsive Bootstrap Website Template</title>
+    <title>Bill-Discounting &mdash;  Bootstrap Website Template</title>
     <meta name="description" content="Free Bootstrap Theme by uicookies.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
    
@@ -62,7 +62,7 @@
  
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
-                      <div  class="probootstrap-form probootstrap-form-box" style="width: 900px;margin-left: -100px" id="showtable">
+                      <div  class="probootstrap-form probootstrap-form-box" style="width: 900px;margin-left: -100px;box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);" id="showtable">
                         
                         <h3 style="margin-top: -20px">Invoice Details</h3>
                         
@@ -220,7 +220,7 @@
                        msg = response.message
                         console.log("message " + JSON.stringify(msg));
                       var no = 0;
-                        var table = '<table id="finance-table" style="font-family: arial, sans-serif; border-collapse: collapse;margin-left:10px" width="800">'
+                        var table = '<table id="finance-table" style="font-family: arial, sans-serif; border-collapse: collapse;margin-left:10px;" width="800">'
                         +'<tr>'+
                           '<th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">'+'Sr No'+'</th>'
                           +'<th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Invoice ID</th>'
@@ -245,7 +245,7 @@
                               '<p style="margin-bottom: 0em; ">Total price : <i class="fa fa-inr"></i> &nbsp;<span id="totalprice">'+msg[i].totalprice+'</span></p>'+
                               '<p style="margin-bottom: 0em; ">Goods :  <span id="goods">'+msg[i].goods+'</span> </p>'+
                               '<p style="margin-bottom: 0em;">Buyer Name : <span id="to">'+msg[i].to+'</span></p>'+
-                              '<p style="margin-bottom: 0em;"> Quantity :<span id="quantity">'+msg[i].quantity+'</span></p>'+
+                              '<p style="margin-bottom: 0em;"> Quantity :<span id="quantity">'+msg[i].quantity+' units</span></p>'+
                               '<p style="margin-bottom: 0em; "> Invoice Date :<span id="invoicedate">'+ msg[i].invoicedate+'</span></p>'+
                               '<p style="margin-bottom: 0em; "> Due Date :<span id="duedate">'+msg[i].duedate+'</span></p>'+
                               '<p style="color: crimson ;margin-bottom: 0em;" id="shwdis"> Discount :<span id="discount" style="color:black" >'+msg[i].discount+'%</span></p>'+
@@ -258,11 +258,11 @@
                            else if(msg[i].status == "invoiceRaised" ){
                             table += ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:black" id="details">'+
                             '<div id="ps">'+
-                               '<p style="margin-bottom: 0em; ">Unit price :  <i class="fa fa-inr"></i> &nbsp;<i class="fa fa-inr"></i><span id="unitprice">'+ msg[i].unitprice +'</span></p>'+
+                               '<p style="margin-bottom: 0em; ">Unit price :  <i class="fa fa-inr"></i> &nbsp;<span id="unitprice">'+ msg[i].unitprice +'</span></p>'+
                               '<p style="margin-bottom: 0em; ">Total price :  <i class="fa fa-inr"></i> &nbsp;<span id="totalprice">'+msg[i].totalprice+'</span></p>'+
                               '<p style="margin-bottom: 0em; ">Goods :  <span id="goods">'+msg[i].goods+'</span> </p>'+
                               '<p style="margin-bottom: 0em;">Buyer Name : <span id="to">'+msg[i].to+'</span></p>'+
-                              '<p style="margin-bottom: 0em;"> Quantity :<span id="quantity">'+msg[i].quantity+'</span></p>'+
+                              '<p style="margin-bottom: 0em;"> Quantity :<span id="quantity">'+msg[i].quantity+'  units </span></p>'+
                               '<p style="margin-bottom: 0em; "> Invoice Date :<span id="invoicedate">'+ msg[i].invoicedate+'</span></p>'+
                               '<p style="margin-bottom: 0em; "> Due Date :<span id="duedate">'+msg[i].duedate+'</span></p>'+
                                                           '</div>'+
