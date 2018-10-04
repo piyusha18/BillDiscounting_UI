@@ -24,6 +24,11 @@
       font-family: arial, sans-serif;
       border-collapse: collapse;
       width: 100%;
+      border: none;
+    }
+    tr:hover{
+      background-color: #ffa;
+
     }
   </style>
 </head>
@@ -94,8 +99,9 @@
 
           <div class="row">
             <div class="col-md-6 col-md-offset-3" id="showtable">
-
-              <table id="finance-table" style="font-family: arial, sans-serif; border-collapse: collapse;width: 100%;">
+              <div class="probootstrap-form probootstrap-form-box" style="width: 900px;margin-left: -140px;box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);">
+              <h style="margin-top:-20px ">Invoice Details</h3>
+                <table id="finance-table"  style="font-family: arial, sans-serif;border: none;width: 100%;" cellspacing="0" cellpadding="0">
                 <tr>
                   <!-- <th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Sr No</th> -->
                   <th style="border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #dddddd;color:black">Invoice ID</th>
@@ -120,6 +126,7 @@
                 </tbody>
               </table>
 
+            </div>
             </div>
           </div>
 
@@ -339,9 +346,9 @@
             $("#invoiceID").val(this.invoiceID);
            // $("#invoiceID").val(this.goods);
             no++;
-            row += '<tr><td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="srno">' + this.invoiceID + '</td>'
-            row += '<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="status">' + this.status + '</td>'
-            row += '<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="colid"><a href="financedetails.html" style="color:green">see here</a></td>'
+            row += '<tr style="hover background-color: #ffa;"><td style="border: none;text-align: left;padding: 8px;color:black" id="srno">' + this.invoiceID + '</td>'
+            row += '<td style="border: none;text-align: left;padding: 8px;color:black" id="status">' + this.status + '</td>'
+            row += '<td style="border: none;text-align: left;padding: 8px;color:black" id="colid"><a href="financedetails.html" style="color:green">see here</a></td>'
            
             if(this.status == "approved" ){
             console.log("in if ")
@@ -357,7 +364,7 @@
                           $('#duedate1').val(this.duedate);
                           $('#discount1').val(this.discount);
                           $('#discountprice1').val(this.discountPrice);
-            row +=' <td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="showbtnfnce"><button id="finceRels" style="color: black">Finance Released</button></td>'
+            row +=' <td style="border: none;text-align: left;padding: 8px;color:white" id="showbtnfnce"><button id="finceRels" style="color: black">Finance Released</button></td>'
           }
           
           
@@ -398,7 +405,7 @@ $('#finceRels').click(function () {
           success: function (response) {
             //var obj = JSON.parse(response.message.message);
             console.log("message--++ " + JSON.stringify(response.message));
-            if (response.message == "Successfully committed the change to the ledger by the peer") { }
+            if (response.message == "Successfully committed the change to the ledger by the peer") 
             {
               window.location.reload(true);
               location.reload();

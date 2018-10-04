@@ -8,6 +8,8 @@
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    
+   
+             
     <link rel="stylesheet" href="css/styles-merged.css">
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="css/custom.css">
@@ -59,7 +61,7 @@
  
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
-                        <div class="probootstrap-form probootstrap-form-box">
+                        <div class="probootstrap-form probootstrap-form-box" style="box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)">
                         <h2 style="margin-top: -20px">Invoice Details</h2>
                         <div class="form-group">
                             <label for="myid"style="" >Invoice ID</label>
@@ -97,7 +99,7 @@
                             <label for="to" >Buyer</label>
                             <input type="text" name="to" id="to" style="margin-left: 90px" disabled>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="dis1">
                             <label for="discount" >Discount</label>
                             <select name="discount" id="discount" style="margin-left: 70px;width: 200px">
                                 <option value="None">-- Select --</option>
@@ -107,10 +109,19 @@
                              </select>
                              
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="dis2">
                             <label for="amountpaid">Discount amount:</label>
                             <input type="text" name="amountpaid" id="amountpaid" style="margin-left: 40px" >
                         </div>
+
+                        <div class="form-group" id="showdis1">
+                          <label for="amountpaid">Discount :</label>
+                          <input type="text" name="discount" id="discount1" style="margin-left: 40px" disabled>
+                      </div>
+                      <div class="form-group" id="showdis2">
+                        <label for="amountpaid">Discount amount:</label>
+                        <input type="text" name="discountPrice" id="discountPrice" style="margin-left: 40px" disabled>
+                    </div>
                             
                         <div class="row form-group" style="margin-bottom: -20px">
                           <div class="col-sm-6">
@@ -257,6 +268,10 @@
 
   $(document).ready(function(){
         $("#ps").hide();
+        $("#dis1").show();
+        $("#dis2").show();
+        $("#showdis1").hide();
+        $("#showdis2").hide();
   $('#invoiceid').click(function(){
    // $("#ps").hide();
       $("#ps").toggle();
@@ -283,8 +298,24 @@
                         var invoiceID =localStorage.getItem('invoiceid');
                         for(var i=0 ;i<obj.length;i++){
                           if(obj[i].invoiceID == invoiceID){
-                               // if(obj[i].status =="approved"){
-                                    $('#shwbtn').show();
+                                if(obj[i].status =="financeReleased"){
+                                  $("#dis1").hide();
+                                 $("#dis2").hide(); 
+                                 $("#showdis1").show();
+                                  $("#showdis2").show(); 
+                                  $('#submitform').hide();
+                                  $('#myid').val(invoiceID)
+                                  $('#unitprice').val(obj[i].unitprice)
+                                  $('#totalamount').val(obj[i].totalprice);
+                                  $('#goods').val(obj[i].goods);
+                                  $('#to').val(obj[i].to);
+                                  $('#mydate').val(obj[i].invoicedate)
+                                  $('#duedate').val(obj[i].duedate);
+                                  $('#quantity').val(obj[i].quantity);
+                                  $('#discount1').val(obj[i].discount);
+                                  $('#discountPrice').val(obj[i].discountPrice);
+                            }else{
+                              $('#shwbtn').show();
                                 $('#shwcheck').show();
                                   $('#myid').val(invoiceID)
                                   $('#unitprice').val(obj[i].unitprice)
@@ -294,7 +325,7 @@
                                   $('#mydate').val(obj[i].invoicedate)
                                   $('#duedate').val(obj[i].duedate);
                                   $('#quantity').val(obj[i].quantity);
-                           // }
+                            }
                           }
                         }
                         var totalprice =obj.totalprice;
