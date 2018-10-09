@@ -298,7 +298,7 @@
                         var invoiceID =localStorage.getItem('invoiceid');
                         for(var i=0 ;i<obj.length;i++){
                           if(obj[i].invoiceID == invoiceID){
-                                if(obj[i].status =="financeReleased" || obj[i].status =="approvalPending"){
+                                if(obj[i].status =="financeReleased" || obj[i].status =="approvalPending" || obj[i].status =="rejected"){
                                   $("#dis1").hide();
                                  $("#dis2").hide(); 
                                  $("#showdis1").show();

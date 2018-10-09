@@ -60,7 +60,7 @@
           <div class="container">
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
-                <h1 class="probootstrap-animate">Welcome </h1>
+                <h1 class="probootstrap-animate" >Welcome </h1>
                 <div class="probootstrap-subtitle probootstrap-animate">
                       <div class="row"id="replcecontent" >
                             <div class="col-sm-6">
@@ -451,7 +451,7 @@
 
                                     
                            }
-                           else if(msg[i].status =="approved" || msg[i].status =='financeReleased'){
+                           else if(msg[i].status =="approved" || msg[i].status =='financeReleased' || msg[i].status =='rejected' ){
                             $('#shwbtn').show();
                           $('#shwcheck').show();
                           table += ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:white" id="details">'+
@@ -505,6 +505,51 @@
                 "to": $('#to1').val(),
                 "unitPrice": $('#unitprice1').val(),
                 "status": "approvalPending"
+              }
+                  console.log(JSON.stringify(datastr))
+
+                      $.ajax({
+                                url:'http://172.16.12.46:3000/financeInvoice',
+                                type: 'POST',
+                                contentType: 'application/json',
+                                data: JSON.stringify(datastr),
+                                success: function(response) {
+                                    //var obj = JSON.parse(response.message.message);
+                                    console.log("message--++ " +JSON.stringify(response.message));
+                                    if(response.message == "Successfully committed the change to the ledger by the peer")
+                                    {
+                                      window.location.reload(true);
+                                      location.reload();
+                          
+                                    }
+                                }, 
+                                async:true,
+                              error: function(response) {
+                                  console.log('DEBUG: GET Enquiries Failed');
+                                  console.log("Error Message: ", response.message);
+                              }
+                                
+                        }); 
+
+
+                      });
+
+
+                       $('#rejctbtn').click(function(){
+                  $("#result").val($(this).closest('tr').find('td').eq(3).text());
+                  
+                    var datastr= {
+                "invoiceID":  $('#invoiceid1').val(),
+                "goods":$('#goods1').val(),
+                "quantity":  $('#quantity1').val(),           
+                "discount": $('#discount1').val(),
+                "discountPrice": $('#discountprice1').val(),
+                "totalPrice":  $('#totalprice1').val(),
+                "dueDate":  $('#duedate1').val(),
+                "invoiceDate":$('#invoicedate1').val(),
+                "to": $('#to1').val(),
+                "unitPrice": $('#unitprice1').val(),
+                "status": "rejected"
               }
                   console.log(JSON.stringify(datastr))
 

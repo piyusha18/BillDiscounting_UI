@@ -254,7 +254,7 @@
                             table +=  ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:black" id="invoiceid" >')+msg[i].invoiceID+('</td>')
                             table +=  ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:black" id="invoiceid" >')+msg[i].status+('</td>')
                             
-                            if(msg[i].status == "approvalPending" || msg[i].status =="approved" || msg[i].status =="financeReleased"){
+                            if(msg[i].status == "approvalPending" || msg[i].status =="approved" || msg[i].status =="financeReleased" || msg[i].status =="rejected"){
                               $('#shwbtn').show();
                           $('#shwcheck').show();
                             table += ('<td style="border: 1px solid #dddddd;text-align: left;padding: 8px;color:black" id="details">'+
